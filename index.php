@@ -1,4 +1,5 @@
 <?php
+include 'auth.php';
 include 'db.php';
 $stats = estatisticas($pdo);
 ?>
@@ -21,39 +22,59 @@ $stats = estatisticas($pdo);
         <?php include 'sidebar.php'; ?>
         <main class="main">
             <header class="page-header">
-                <p class="eyebrow">Bem-vinda de volta</p>
+                <p class="eyebrow">Bem-vinda de volta
+                    <?= !empty($_SESSION['usuario']) ? ', ' . htmlspecialchars($_SESSION['usuario'], ENT_QUOTES, 'UTF-8') : '' ?>
+                </p>
                 <h1 class="title">Doce Sonho <span class="italic-rose">Confeitaria</span></h1>
                 <p class="subtitle">Gerencie produtos, clientes e pedidos da sua confeitaria com elegância.</p>
+                <div style="margin-top:20px;">
+                    <a href="logout.php" class="btn-rose">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sair
+                    </a>
+                </div>
             </header>
 
             <section class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-icon rose"><i class="fas fa-birthday-cake"></i></div>
                     <p class="stat-label">Produtos</p>
-                    <p class="stat-value"><?= $stats['produtos'] ?></p>
+                    <p class="stat-value">
+                        <?= $stats['produtos'] ?>
+                    </p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon gold"><i class="fas fa-users"></i></div>
                     <p class="stat-label">Clientes</p>
-                    <p class="stat-value"><?= $stats['clientes'] ?></p>
+                    <p class="stat-value">
+                        <?= $stats['clientes'] ?>
+                    </p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon pink"><i class="fas fa-shopping-bag"></i></div>
                     <p class="stat-label">Pedidos</p>
-                    <p class="stat-value"><?= $stats['pedidos'] ?></p>
+                    <p class="stat-value">
+                        <?= $stats['pedidos'] ?>
+                    </p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon mix"><i class="fas fa-dollar-sign"></i></div>
                     <p class="stat-label">Receita Total</p>
-                    <p class="stat-value">R$ <?= number_format($stats['receita'], 2, ',', '.') ?></p>
+                    <p class="stat-value">R$
+                        <?= number_format($stats['receita'], 2, ',', '.') ?>
+                    </p>
                 </div>
             </section>
 
             <section class="pending-banner">
                 <div class="pending-icon"><i class="fas fa-clock"></i></div>
                 <div class="pending-text">
-                    <strong><?= $stats['pendentes'] ?> pedido<?= $stats['pendentes'] == 1 ? '' : 's' ?>
-                        pendente<?= $stats['pendentes'] == 1 ? '' : 's' ?></strong>
+                    <strong>
+                        <?= $stats['pendentes'] ?> pedido
+                        <?= $stats['pendentes'] == 1 ? '' : 's' ?>
+                        pendente
+                        <?= $stats['pendentes'] == 1 ? '' : 's' ?>
+                    </strong>
                     <span>Acompanhe e atualize o status na página de pedidos.</span>
                 </div>
                 <a href="pedidos.php" class="btn-rose">Ver pedidos</a>
