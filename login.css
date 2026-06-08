@@ -1,0 +1,357 @@
+:root {
+    --rose-50: #fdf2f4;
+    --rose-100: #fce7eb;
+    --rose-200: #f8d0d9;
+    --rose-300: #f1a6b7;
+    --rose-500: #c94f6d;
+    --rose-600: #b03d5b;
+    --rose-700: #8a2f48;
+    --rose-900: #4a1a28;
+
+    --gold-300: #e9c089;
+    --gold-400: #d9a866;
+    --gold-500: #c08a4a;
+
+    --cream-50: #fff8f3;
+    --cream-100: #fdeee2;
+
+    --ink: #3b1a26;
+    --ink-soft: #6b4a55;
+    --line: rgba(180, 90, 110, 0.15);
+
+    --shadow-soft: 0 30px 60px -20px rgba(180, 70, 100, 0.25),
+        0 12px 24px -10px rgba(180, 70, 100, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Quicksand', system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+}
+
+.login-page {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at top left, var(--rose-100) 0%, transparent 55%),
+        radial-gradient(ellipse at bottom right, var(--cream-100) 0%, transparent 60%),
+        linear-gradient(135deg, #fff6f1 0%, #fde6ec 50%, #fbd6e0 100%);
+}
+
+/* Círculos decorativos sutis ao fundo */
+.login-decor {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.decor-1 {
+    width: 380px;
+    height: 380px;
+    background: var(--rose-200);
+    top: -120px;
+    left: -120px;
+}
+
+.decor-2 {
+    width: 320px;
+    height: 320px;
+    background: var(--gold-300);
+    bottom: -100px;
+    right: -80px;
+}
+
+.decor-3 {
+    width: 200px;
+    height: 200px;
+    background: var(--rose-300);
+    top: 40%;
+    right: 12%;
+    opacity: 0.35;
+}
+
+/* Cartão principal */
+.login-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 28px;
+    padding: 40px 36px 32px;
+    box-shadow: var(--shadow-soft);
+    animation: card-in 0.7s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+@keyframes card-in {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Marca */
+.brand {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.brand-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 14px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--rose-300) 0%, var(--gold-400) 100%);
+    color: #fff;
+    font-size: 26px;
+    box-shadow: 0 12px 24px -8px rgba(192, 90, 110, 0.45);
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 28px;
+    margin: 0;
+    color: var(--rose-900);
+    letter-spacing: 0.5px;
+}
+
+.brand-tag {
+    margin: 4px 0 0;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 600;
+}
+
+/* Saudação */
+.welcome {
+    text-align: left;
+    margin-bottom: 22px;
+}
+
+.eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--rose-600);
+}
+
+.welcome-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.15;
+    margin: 8px 0 6px;
+    color: var(--rose-900);
+}
+
+.italic-rose {
+    font-style: italic;
+    color: var(--rose-500);
+    font-weight: 700;
+}
+
+.welcome-sub {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+}
+
+/* Formulário */
+.login-form {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--rose-700);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+.input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrap i {
+    position: absolute;
+    left: 16px;
+    color: var(--rose-500);
+    font-size: 15px;
+    pointer-events: none;
+}
+
+.input-wrap input {
+    width: 100%;
+    padding: 14px 16px 14px 44px;
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.input-wrap input::placeholder {
+    color: #c8a4ad;
+}
+
+.input-wrap input:focus {
+    outline: none;
+    border-color: var(--rose-500);
+    box-shadow: 0 0 0 4px rgba(201, 79, 109, 0.12);
+}
+
+/* Botão */
+.btn-rose {
+    margin-top: 4px;
+    border: none;
+    cursor: pointer;
+    padding: 14px 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--rose-500) 0%, var(--rose-600) 100%);
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 14px 26px -10px rgba(176, 61, 91, 0.55);
+    transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+.btn-rose:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 18px 30px -10px rgba(176, 61, 91, 0.65);
+    filter: brightness(1.04);
+}
+
+.btn-rose:active {
+    transform: translateY(0);
+}
+
+.btn-rose i {
+    font-size: 13px;
+}
+
+/* Dica */
+.hint {
+    margin: 4px 0 0;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    text-align: center;
+    background: var(--cream-50);
+    border: 1px dashed rgba(192, 138, 74, 0.35);
+    padding: 10px 14px;
+    border-radius: 12px;
+}
+
+.hint i {
+    color: var(--gold-500);
+    margin-right: 6px;
+}
+
+.hint strong {
+    color: var(--rose-700);
+    font-weight: 700;
+}
+
+/* Alerta de erro */
+.alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+.alert-error {
+    background: #fde8ec;
+    color: #8a2f48;
+    border: 1px solid #f1bdc8;
+}
+
+.alert i {
+    font-size: 15px;
+}
+
+/* Rodapé do cartão */
+.footer-note {
+    margin-top: 26px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ink-soft);
+}
+
+.footer-note i {
+    color: var(--rose-500);
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .login-card {
+        padding: 32px 22px 26px;
+        border-radius: 22px;
+    }
+
+    .welcome-title {
+        font-size: 24px;
+    }
+
+    .brand-name {
+        font-size: 24px;
+    }
+}
