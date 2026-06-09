@@ -1,7 +1,7 @@
-
 <?php
+session_start(); // Sempre a primeira linha!
+include 'auth.php';
 include 'db.php';
-
 $mensagem = '';
 $erro = '';
 $editando = null;

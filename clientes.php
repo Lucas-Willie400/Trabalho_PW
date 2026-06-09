@@ -1,6 +1,8 @@
 <?php
+session_start();
 include 'auth.php';
 include 'db.php';
+
 
 $mensagem = '';
 $erro = '';
