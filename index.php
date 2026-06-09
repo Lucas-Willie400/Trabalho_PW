@@ -1,4 +1,5 @@
 <?php
+session_start(); // Adicionado para permitir o uso de $_SESSION
 include 'auth.php';
 include 'db.php';
 $stats = estatisticas($pdo);
@@ -23,7 +24,7 @@ $stats = estatisticas($pdo);
         <main class="main">
             <header class="page-header">
                 <p class="eyebrow">Bem-vinda de volta
-                    <?= !empty($_SESSION['usuario']) ? ', ' . htmlspecialchars($_SESSION['usuario'], ENT_QUOTES, 'UTF-8') : '' ?>
+                    <?= !empty($_SESSION['user_email']) ? ', ' . htmlspecialchars($_SESSION['user_email'], ENT_QUOTES, 'UTF-8') : '' ?>
                 </p>
                 <h1 class="title">Doce Sonho <span class="italic-rose">Confeitaria</span></h1>
                 <p class="subtitle">Gerencie produtos, clientes e pedidos da sua confeitaria com elegância.</p>

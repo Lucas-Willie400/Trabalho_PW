@@ -1,54 +1,28 @@
 <?php
+require "db.php";
 session_start();
 
-// Usuários do sistema
-$usuarios = [
-    'cliente' => [
-        'senha' => '',
-        'tipo' => 'cliente',
-        'nome' => 'Cliente'
-    ],
-    'admin' => [
-        'senha' => '123',
-        'tipo' => 'admin',
-        'nome' => 'Confeiteira'
-    ]
-];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
 
-// Se já estiver logado
-if (!empty($_SESSION['logged_in'])) {
-    header('Location: index.php');
-    exit;
-}
+    $login = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
 
-$erro = '';
+    $login->bindValue(':email', $email);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $login->execute();
+    $user = $login->fetch();
 
-    $usuario = strtolower(trim($_POST['usuario'] ?? ''));
-    $senha = trim($_POST['senha'] ?? '');
 
-    if (isset($usuarios[$usuario])) {
-
-        $dadosUsuario = $usuarios[$usuario];
-
-        // Cliente entra sem senha
-        if (
-            $usuario === 'cliente'
-            ||
-            ($usuario === 'admin' && $senha === $dadosUsuario['senha'])
-        ) {
-
-            $_SESSION['logged_in'] = true;
-            $_SESSION['usuario'] = $dadosUsuario['nome'];
-            $_SESSION['tipo'] = $dadosUsuario['tipo'];
-
-            header('Location: index.php');
-            exit;
-        }
+    if ($user && password_verify($senha, $user['senha'])) {
+        $_SESSION['user_email'] = $user['email'];
+        header("location: index.php");
+        exit();
+    } else {
+        header("location: login.php?msg=Login ou senha incorretos");
+        exit();
     }
 
-    $erro = 'Usuário ou senha inválidos.';
 }
 ?>
 
@@ -100,24 +74,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </p>
             </div>
 
-            <?php if ($erro): ?>
-                <div class="alert alert-error">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <?= $erro ?>
-                </div>
-            <?php endif; ?>
-
             <form method="POST" class="login-form">
 
                 <div class="field">
-                    <label>Usuário</label>
+                    <label>Email</label>
 
                     <div class="input-wrap">
                         <i class="fas fa-user"></i>
 
-                        <input type="text" name="usuario" placeholder="Digite seu usuário" required>
+                        <input type="text" name="email" placeholder="Digite seu email" required>
                     </div>
                 </div>
+
+                <?php if (!empty($_GET['msg'])): ?>
+                    <div
+                        style="background-color: #f8d7da; color: #721c24; padding: 10px; margin-bottom: 15px; border-radius: 5px; text-align: center; font-size: 14px;">
+                        <?= htmlspecialchars($_GET['msg'], ENT_QUOTES, 'UTF-8') ?>
+                    </div>
+                <?php endif; ?>
 
                 <div class="field">
                     <label>Senha</label>
