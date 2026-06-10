@@ -49,6 +49,5 @@ INSERT INTO produtos (nome, preco, descricao, categoria) VALUES
 INSERT INTO clientes (nome, email, telefone, endereco) VALUES
 ('Maria Silva', 'maria@email.com', '(11) 99999-1234', 'Rua das Flores, 100');
 
-INSERT INTO usuarios(email, senha) VALUES
-('admin@docesonho@gmail.com' '123');
-
+INSERT INTO usuarios (email, senha) VALUES
+('admin@docesonho@gmail.com', '$2y$10$4K9g.U9VbB/fX263FhXGvO8ZfQn6v8G9k9yQ3m6Z9z1x8V7G4K7m.');
