@@ -1,4 +1,4 @@
-CREATE DATABASE confeitaria_doce_sonho;
+CREATE DATABASE IF NOT EXISTS confeitaria_doce_sonho;
 USE confeitaria_doce_sonho;
 
 CREATE TABLE IF NOT EXISTS usuarios (
