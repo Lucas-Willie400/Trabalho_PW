@@ -1,9 +1,9 @@
 <?php
 
-$DB_HOST = 'localhost';
+$DB_HOST = 'mysql';
 $DB_NAME = 'confeitaria_doce_sonho';
 $DB_USER = 'root';
-$DB_PASS = '';
+$DB_PASS = 'root';
 
 try {
     $pdo = new PDO(
