@@ -1,3 +1,4 @@
+CREATE DATABASE confeitaria_doce_sonho;
 USE confeitaria_doce_sonho;
 
 CREATE TABLE IF NOT EXISTS usuarios (
@@ -47,4 +48,7 @@ INSERT INTO produtos (nome, preco, descricao, categoria) VALUES
 
 INSERT INTO clientes (nome, email, telefone, endereco) VALUES
 ('Maria Silva', 'maria@email.com', '(11) 99999-1234', 'Rua das Flores, 100');
+
+INSERT INTO usuarios(email, senha) VALUES
+('admin@docesonho@gmail.com' '123')
 
