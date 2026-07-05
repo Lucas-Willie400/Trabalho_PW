@@ -1,0 +1,36 @@
+{
+  "name": "PHP Web Development",
+  "image": "mcr.microsoft.com/devcontainers/php:8-apache",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "forwardPorts": [80, 443, 8000, 8080],
+  "portsAttributes": {
+    "80": {
+      "label": "Apache HTTP",
+      "onAutoForward": "notify"
+    },
+    "443": {
+      "label": "Apache HTTPS",
+      "onAutoForward": "notify"
+    },
+    "8000": {
+      "label": "PHP Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "a2enmod rewrite && service apache2 restart",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "felixbecker.php-debug",
+        "bmewburn.vscode-intelephense-client",
+        "ecmel.vscode-html-css",
+        "eamodio.gitlens"
+      ],
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php"
+      }
+    }
+  }
+}
